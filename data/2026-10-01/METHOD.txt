@@ -1,8 +1,9 @@
-GT DAILY BOARDS -- METHOD (GT_DAILY_BOARDS_V1), written 2026-10-02T19:26:41Z BEFORE computing
+GT DAILY BOARDS -- METHOD (GT_DAILY_BOARDS_V1), written 2026-10-02T21:34:19Z BEFORE computing
 Day: 2026-10-01 UTC = blockTime in [1790812800, 1790899200) unix s. Commitment finalized.
-Read as two 12 h halves (00:00-12:00, 12:00-24:00 UTC), each collected 15 min after it ends, from Chainstack Solana RPC (keyed; host only) (address history ~20 h).
+Read as two 12 h halves (00:00-12:00, 12:00-24:00 UTC), each collected 15 min after it ends, from solana-mainnet.core.chainstack.com (keyed) (address history ~20 h).
+A half also fails unless its successful-signature counts agree with a second RPC (api.mainnet-beta.solana.com) within 1%.
 A signature list that does not reach its half's start, or any transaction that does not read, leaves that half NOT collected,
-and every board that needs it stops and says why. Chainstack Solana RPC (keyed; host only) is used only for a backfill outside that window (rate-limited).
+and every board that needs it stops and says why. solana-mainnet.core.chainstack.com (keyed) is used only for a backfill outside that window (rate-limited).
 
 1. THE WALL -- "pulled at the wall" is GT's existing flag (gt_asof.py): a rugged coin whose curve peak_real_sol reached
    >= 84.915 SOL (99.9% of 85) and <= 85.01, with grad_verify.complete == 0. Used as is; no new definition.
@@ -21,7 +22,9 @@ and every board that needs it stops and says why. Chainstack Solana RPC (keyed; 
 4. THE TOLL -- _agent/toll/toll_tools.zip METHOD_TOLL.txt + toll.py, unchanged, on board 2's graduates only.
    Candles: pump.fun hourly from launch (https://swap-api.pump.fun/v2/coins/<mint>/candles?interval=1h&currency=SOL&createdTs=0),
    price in SOL per coin, volume in SOL. Per candle fee = volume * tier(sqrt(open*close)*1e9) (pump.fun's published table;
-   candles with open<=0 or close<=0 skipped and counted). Dead = last close * 1e9 < 100 SOL.
+   candles with open<=0 or close<=0 skipped and counted). Candle guard: a coin with ANY candle over 50,000 SOL is dropped from
+   every toll total and named in boards.json. Dead = pool cap under 100 SOL at run time: the SAME read as GRADUATION DAY, one
+   read time, stated once; a coin without a run-time cap is excluded and counted.
    Real SOL left = quote vault lamports / 1e9 at run time (board 2's read). Wording: "traders paid X in pump.fun fees".
    Terminal and priority fees are on top and not counted.
 POSTS -- top 3 rows each; every count with its N and the UTC day. A row is linked only if its GT card loads with a

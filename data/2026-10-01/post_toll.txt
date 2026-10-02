@@ -1,7 +1,7 @@
 THE TOLL · graduates of 2026-10-01 UTC
-1,180 of 1,257 are dead (last cap under 100 SOL).
-Traders paid 31,462.0 SOL in pump.fun fees on the dead ones.
-7,197.0 SOL left in their pools. Terminal and priority fees on top.
+1,172 of 1,255 are dead (cap under 100 SOL, read 10-02 21:36 UTC).
+Traders paid 31,718.6 SOL in pump.fun fees on the dead ones.
+2,408.0 SOL left in their pools. Terminal and priority fees on top.
 
 $WIRED · 651.2 SOL in fees · groundtruths.xyz/autopsy?ca=458eEcXufhsLoS1NWa6donw9Yh9USfWMCtBmyFTypump
 $SOLDOG · 573.4 SOL in fees · groundtruths.xyz/autopsy?ca=EQoTL7T8VFigYKqtfDxL6bqs7ZpqXRKrMbK49WvEpump

@@ -1,6 +1,6 @@
 GRADUATION DAY · 2026-10-01 UTC
-1,257 graduated on-chain. 1,168 of 1,257 already under 100 SOL.
-(caps read 10-02 19:28 UTC)
+1,257 graduated on-chain. 1,174 of 1,257 already under 100 SOL.
+(caps read 10-02 21:36 UTC)
 
 $SUPB · 0.001 SOL now · groundtruths.xyz/autopsy?ca=82pJJvRXWGdQyw59KDL6rYnD4o9gHL6bviqbbFx2pump
 $STONK 2.0 · 0.001 SOL now · groundtruths.xyz/autopsy?ca=ArRNsAexo5mGRCbSKGHMXmVuPvLeG4SwS579hwbTpump
