@@ -1,0 +1,29 @@
+GT DAILY BOARDS -- METHOD (GT_DAILY_BOARDS_V1), written 2026-10-02T19:26:41Z BEFORE computing
+Day: 2026-10-01 UTC = blockTime in [1790812800, 1790899200) unix s. Commitment finalized.
+Read as two 12 h halves (00:00-12:00, 12:00-24:00 UTC), each collected 15 min after it ends, from Chainstack Solana RPC (keyed; host only) (address history ~20 h).
+A signature list that does not reach its half's start, or any transaction that does not read, leaves that half NOT collected,
+and every board that needs it stops and says why. Chainstack Solana RPC (keyed; host only) is used only for a backfill outside that window (rate-limited).
+
+1. THE WALL -- "pulled at the wall" is GT's existing flag (gt_asof.py): a rugged coin whose curve peak_real_sol reached
+   >= 84.915 SOL (99.9% of 85) and <= 85.01, with grad_verify.complete == 0. Used as is; no new definition.
+   Inputs: launch_outcome (rugged), curve_state.peak_real_sol, grad_verify.complete -- GT pipeline DB on the PC.
+2. GRADUATION DAY -- graduate = a successful pump.fun Migrate/MigrateV2 transaction in the day (the on-chain migration):
+   every successful signature on the withdraw authority 39azUYFWPz3VHgKCf3VChUwbpURdCHRxjWVowf5jUJjg in the day, kept when its logs carry
+   "Instruction: Migrate" and the pump.fun instruction names that authority; mint = that instruction's account 2.
+   One row per mint. Pool = the PumpSwap create_pool in the same tx (account 0), checked against the pool account.
+   Cap in SOL at run time: Qe = quote vault lamports + Pool.virtual_quote_reserves (i128 @245); cap = Qe / base_raw * 1e6.
+   Under 100 SOL = cap < 100 at run time. Ticker = Token-2022 tokenMetadata symbol, else Metaplex metadata symbol.
+3. BUSIEST HANDS -- every successful signature on the mint authority TSLvdd1pWpHVjahSpsvCXUbgwsL3JAcvokwaKt1eokM in the day, kept when its logs carry
+   "Instruction: Create" and a pump.fun instruction names that authority as account 1; mint = account 0.
+   Hand = the create tx's first signer that is not the mint (GT_SIGNER_CREATOR_V1 / GT_CARD_DEV_V1, the create_signer
+   rule; never the curve's creator field). Top 25 hands by count. Lifetime = GT creator record `launched`
+   (/api/scan?ca=<wallet>); none = "no record".
+4. THE TOLL -- _agent/toll/toll_tools.zip METHOD_TOLL.txt + toll.py, unchanged, on board 2's graduates only.
+   Candles: pump.fun hourly from launch (https://swap-api.pump.fun/v2/coins/<mint>/candles?interval=1h&currency=SOL&createdTs=0),
+   price in SOL per coin, volume in SOL. Per candle fee = volume * tier(sqrt(open*close)*1e9) (pump.fun's published table;
+   candles with open<=0 or close<=0 skipped and counted). Dead = last close * 1e9 < 100 SOL.
+   Real SOL left = quote vault lamports / 1e9 at run time (board 2's read). Wording: "traders paid X in pump.fun fees".
+   Terminal and priority fees are on top and not counted.
+POSTS -- top 3 rows each; every count with its N and the UTC day. A row is linked only if its GT card loads with a
+   ticker and without DEV NOT READ / CHAIN READ FAILED (read via /api/scan, same envelope a visitor gets, with the
+   internal key so the check spends no visitor limit); otherwise the next row.

@@ -1,0 +1,2 @@
+wall did not run for 2026-10-01.
+GT's wall flag needs launch_outcome (rugged), curve_state.peak_real_sol and grad_verify.complete. They live in the GT pipeline DB on the PC; no API or file on the VPS carries them per coin.
